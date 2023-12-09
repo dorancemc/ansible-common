@@ -1,2 +1,7 @@
 ---
-# defaults file for ansible-common
+
+common_hosts: {} # Dictionary of hosts to add to /etc/hosts
+common_packages: [] # List of packages to install
+common_pip_packages: [] # List of pip packages to install
+common_set_hostname: false # Set the inventory_hostname to the hostname of the machine and reboot if necessary
+common_time_zone: 'America/Bogota' # Time zone to set

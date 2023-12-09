@@ -1,3 +1,5 @@
+---
+
 galaxy_info:
   author: Dorance Martinez
   description: Common tasks when deploy the host for the first time
@@ -7,7 +9,7 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - jammy
+        - all
   galaxy_tags: []
 
 dependencies: []

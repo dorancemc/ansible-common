@@ -1,2 +1,14 @@
 ---
-# handlers file for ansible-common
+
+- name: Reboot the server
+  become: true
+  shell: sleep 2 && /sbin/shutdown -r now "Ansible hostname updated"
+  async: 1
+  poll: 0
+  listen: Reboot
+
+- name: Wait for server to come back
+  wait_for_connection:
+    delay: 10
+    timeout: 300
+  listen: Reboot

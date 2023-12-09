@@ -1,2 +1,31 @@
 ---
 # tasks file for ansible-common
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ inventory_hostname }}"
+  when:
+    - common_set_hostname
+  notify:
+    - Reboot
+
+- name: Set timezone
+  ansible.builtin.timezone:
+    name: "{{ common_time_zone }}"
+
+- name: Install common packages
+  ansible.builtin.package:
+    name: "{{ common_packages }}"
+    state: present
+
+- name: Install common Python dependencies
+  ansible.builtin.pip:
+    name: "{{ common_pip_packages }}"
+    state: present
+  when: common_pip_packages|length > 0
+
+- name: Fill /etc/hosts
+  ansible.builtin.template:
+    src: hosts.j2
+    dest: /etc/hosts
+    mode: "0644"
+  # when: common_hosts|length > 0
